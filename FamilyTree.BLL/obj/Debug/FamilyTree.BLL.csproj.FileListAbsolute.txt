@@ -1,0 +1,9 @@
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\bin\Debug\FamilyTree.BLL.dll
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\bin\Debug\FamilyTree.BLL.pdb
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\bin\Debug\FamilyTree.DAL.dll
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\bin\Debug\EntityFramework.dll
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\bin\Debug\FamilyTree.DAL.pdb
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\bin\Debug\EntityFramework.xml
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\obj\Debug\FamilyTree.BLL.csprojResolveAssemblyReference.cache
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\obj\Debug\FamilyTree.BLL.dll
+C:\Users\BLogic\Documents\Visual Studio 2012\Projects\FamilyTree\FamilyTree.BLL\obj\Debug\FamilyTree.BLL.pdb

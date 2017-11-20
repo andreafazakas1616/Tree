@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTree.DAL", "FamilyTree.DAL\FamilyTree.DAL.csproj", "{5E13D4C9-0ECB-42D5-813B-8A68740A4679}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTree.Presentation", "FamilyTree.Presentation\FamilyTree.Presentation.csproj", "{79D58535-2388-4BCB-A7E4-77AB2D9675E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyTree.BLL", "FamilyTree.BLL\FamilyTree.BLL.csproj", "{F2D027B6-3A0C-43D6-B5D8-CF2D319D3DA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E13D4C9-0ECB-42D5-813B-8A68740A4679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E13D4C9-0ECB-42D5-813B-8A68740A4679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E13D4C9-0ECB-42D5-813B-8A68740A4679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E13D4C9-0ECB-42D5-813B-8A68740A4679}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D58535-2388-4BCB-A7E4-77AB2D9675E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D58535-2388-4BCB-A7E4-77AB2D9675E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D58535-2388-4BCB-A7E4-77AB2D9675E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D58535-2388-4BCB-A7E4-77AB2D9675E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D027B6-3A0C-43D6-B5D8-CF2D319D3DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D027B6-3A0C-43D6-B5D8-CF2D319D3DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D027B6-3A0C-43D6-B5D8-CF2D319D3DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D027B6-3A0C-43D6-B5D8-CF2D319D3DA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

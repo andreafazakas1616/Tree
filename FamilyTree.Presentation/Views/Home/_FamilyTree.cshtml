@@ -1,0 +1,79 @@
+﻿@model FamilyTree.BLL.Models.PersonModel
+
+@{
+    int? id = @Model.Id;
+}
+
+<div class="tree treesize">
+<ul>
+  <li class="node">
+ @if (Model.Id == (int)ViewData["SelectedNode"])
+    { 
+       
+      <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @Model.Gender)</span></p><br/>
+      <input type="button" value="Edit" onclick="location.href='@Url.Action("EditOrCreate", "Data", @Model)'" />
+    }
+    else
+    {
+        <p>@Model.Name </p>
+        <input type="button" value="Edit" onclick="location.href='@Url.Action("EditOrCreate", "Data", @Model)'" />
+    }
+<ul>   
+@foreach (var parent in Model.Relatives)
+{
+   <li>
+    
+    @Html.Partial("_FamilyTree", parent)
+  
+   </li>  
+}
+    </ul>
+ </li> 
+ </ul>
+    
+    
+</div>
+
+   @* 
+    @if (Model.Id == (int)ViewData["SelectedNode"])
+    { 
+        
+            <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @if (Model.Gender == false)
+                                                                                {
+                                                                                     <span>Female</span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                     <span>Male</span>
+                                                                                })
+                                                </span>
+            </p>
+        
+    }
+    else
+    {
+        @Model.Name
+    }
+    
+
+
+<ul>
+@foreach (var parent in Model.Relatives)
+{
+   <li>
+    @Html.Partial("_FamilyTree", parent)
+  </li>
+        
+}
+
+</ul>
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(function () {
+
+
+    });
+</script>*@
+
+

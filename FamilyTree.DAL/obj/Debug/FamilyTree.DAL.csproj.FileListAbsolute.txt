@@ -1,0 +1,10 @@
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\bin\Debug\FamilyTree.DAL.dll.config
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\bin\Debug\FamilyTree.DAL.dll
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\bin\Debug\FamilyTree.DAL.pdb
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\bin\Debug\EntityFramework.dll
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\bin\Debug\EntityFramework.xml
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\obj\Debug\FamilyTree.DAL.csprojResolveAssemblyReference.cache
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\obj\Debug\FamilyTree.DAL.dll
+C:\Users\BLogic\documents\visual studio 2012\Projects\FamilyTree\FamilyTree.DAL\obj\Debug\FamilyTree.DAL.pdb

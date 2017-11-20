@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArboreGenealogicModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ArboreGenealogicModelStoreContainer">
+    <EntitySet Name="People" EntityType="ArboreGenealogicModel.Store.People" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="MomId" Type="int" />
+    <Property Name="DadId" Type="int" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Gender" Type="bit" />
+  </EntityType>
+  <Function Name="DadsAge" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dadsId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="FindParentGender" ReturnType="bit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="parentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MomsAge" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="momId" Type="int" Mode="In" />
+  </Function>
+</Schema>

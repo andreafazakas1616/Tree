@@ -1,0 +1,17 @@
+﻿@model IEnumerable<FamilyTree.Presentation.Models.PersonViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container offset-md-4">
+    @foreach (var item in Model)
+    { 
+        <div class=" row ">
+            <div class="chip col-md-4">
+                <img src="~/Content/images/tree.png" alt="Person" width="100px" height="96">
+                <a href="@Url.Action("ShowFamilyTree", item)">@item.Name</a>
+            </div>
+        </div>
+    }
+</div>
