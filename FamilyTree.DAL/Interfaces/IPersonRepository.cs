@@ -12,5 +12,7 @@ namespace FamilyTree.DAL.Interfaces
         Person GetById(int id);
         void Update(Person modifiedPerson);
         int Save(Person person);
+        void AddMother(Person modifiedPerson);
+        void AddFather(Person modifiedPerson);
     }
 }
