@@ -1,11 +1,8 @@
-﻿@model FamilyTree.BLL.Models.PersonModel
+﻿@model FamilyTree.Presentation.Models.EditViewModel
 
-@{
-    ViewBag.Title = "Edit";
-    var relatives = @Model.Relatives.Count;
-}
 
 <h2>Edit @Model.Name's Details</h2>
+
 @*<form method="post" action="~/Data/EditPerson">
     <div class="form-group">
     @Html.HiddenFor(model=>model.Id)
@@ -18,5 +15,27 @@
   </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>*@
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Movie</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+         <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
 
 

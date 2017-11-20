@@ -11,12 +11,22 @@
     { 
        
       <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @Model.Gender)</span></p><br/>
-      <input type="button" value="Edit" onclick="location.href='@Url.Action("EditOrCreate", "Data", @Model)'" />
+      @*<input type="button" value="Edit" onclick="location.href='@Url.Action("EditOrCreate", "Data", @Model)'" />*@
+     @Html.ActionLink("Edit", "Edit", new{controller = "Data", id = Model.Id })
     }
+ else
+ {
+        <p>@Model.Name </p>
+     if (Model.Name != "Unknown")
+     {
+         @Html.ActionLink("Edit", "Edit", new {controller="Data", id = Model.Id })
+     }
     else
     {
-        <p>@Model.Name </p>
-        <input type="button" value="Edit" onclick="location.href='@Url.Action("EditOrCreate", "Data", @Model)'" />
+     @Html.ActionLink("Create", "Create", new{Controller="Data" })
+     }
+ 
+     
     }
 <ul>   
 @foreach (var parent in Model.Relatives)

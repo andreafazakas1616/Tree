@@ -30,5 +30,16 @@ namespace FamilyTree.Presentation.Models.Mappers
             return viewModelList;
         }
 
+        public static EditViewModel ConvertToEditViewModel(PersonModel model)
+        {
+            EditViewModel viewModel = new EditViewModel();
+
+            viewModel.Id = model.Id;
+            viewModel.Name = model.Name;
+
+            return viewModel;
+
+        }
+
     }
 }

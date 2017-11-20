@@ -215,6 +215,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\Mappers\PersonMapper.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
     <Compile Include="Models\ViewModelRepository\ViewModelManager.cs" />

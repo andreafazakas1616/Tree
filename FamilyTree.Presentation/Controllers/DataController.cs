@@ -1,5 +1,7 @@
 ﻿using FamilyTree.BLL.Managers;
 using FamilyTree.BLL.Models;
+using FamilyTree.Presentation.Models;
+using FamilyTree.Presentation.Models.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,16 +36,19 @@ namespace FamilyTree.Presentation.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(PersonModel person)
+        public ActionResult Edit(int id=0)
         {
             //PersonModel person = _dalModelRetriever.GetPersonById(Id);
-            return View(person);
+            PersonModel person = _dalModelRetriever.GetPersonById(id);
+            EditViewModel editedPerson = PersonMapper.ConvertToEditViewModel(person);
+            return View(editedPerson);
         }
 
         [HttpPost]
-        public ActionResult EditPerson(PersonModel person)
+        public ActionResult Edit(EditViewModel editedPerson)
         {
-            _dalModelRetriever.GetPersonById(person.Id);
+            PersonModel person = _dalModelRetriever.GetPersonById(editedPerson.Id);
+            person.Name = editedPerson.Name;
             _dalModelModifier.Update(person);
             return Redirect("~/Home/Index");
         }
