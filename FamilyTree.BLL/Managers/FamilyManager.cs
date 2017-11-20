@@ -64,6 +64,25 @@ namespace FamilyTree.BLL.Managers
                 CheckIfIncompleteBranch(relative);
             }
         }
+        
+        public void CheckIfNoParents(PersonModel node)
+        {
+
+            if (node.Name != "Unknown")
+            {
+                PersonModel unknownRelative = new PersonModel() { Name = "Unknown" };
+                if (node.Relatives.Count == 0)
+                {
+                    node.Relatives.Add(unknownRelative);
+                    node.Relatives.Add(unknownRelative);
+                }
+
+                foreach (var relative in node.Relatives)
+                {
+                    CheckIfNoParents(relative);
+                }
+            }
+        }
 
         public PersonModel GetFullFamilyTreeFromRoot(PersonModel node, List<PersonModel> personList)
         {
@@ -73,6 +92,7 @@ namespace FamilyTree.BLL.Managers
             }
             node.Relatives = FindParents(node, personList);
             CheckIfIncompleteBranch(node);
+            CheckIfNoParents(node);
 
             return node;
         }
