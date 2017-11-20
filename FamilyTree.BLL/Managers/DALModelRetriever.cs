@@ -33,16 +33,6 @@ namespace FamilyTree.BLL.Managers
             PersonModel person = new PersonModel();
             var entity = _personRepository.GetById(id);
             person = PersonMapper.ConvertToPersonModel(entity);
-            //if (person.Id == 8) 
-            //{ 
-            //   person.Name = "Andrea";
-            //    person.Age = 21;
-            //    person.Gender = "Female";
-            //    person.DadId = 10;
-            //    person.MomId = 9;
-            //    person.Relatives = _familyManager.FindParents(person, GetAllPeople());
-
-            //}
             return person;
         }
 

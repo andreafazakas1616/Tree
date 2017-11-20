@@ -24,11 +24,6 @@ namespace FamilyTree.DAL.Repositories
         public List<Person> GetAllPeople()
         {
             var list = _context.People.ToList();
-            //list[0].Name = "Andrea";
-            //list[0].Age = 21;
-            //list[0].Gender = false;
-            //list[0].DadId = 10;
-            //list[0].MomId = 9;
             return list;
         }
 
@@ -44,6 +39,13 @@ namespace FamilyTree.DAL.Repositories
             oldPerson.Name = modifiedPerson.Name;
             _context.Entry(oldPerson).State = System.Data.Entity.EntityState.Modified;
             _context.SaveChanges();
+        }
+
+        public int Save(Person person)
+        {
+            _context.People.Add(person);
+            _context.SaveChanges();
+            return person.Id;
         }
 
     }

@@ -41,5 +41,16 @@ namespace FamilyTree.Presentation.Models.Mappers
 
         }
 
+        public static PersonModel ConvertToPersonModel(CreateViewModel personViewModel)
+        {
+            PersonModel personModel = new PersonModel();
+            personModel.Name = personViewModel.Name;
+            personModel.Age = personViewModel.Age;
+            personModel.Gender = personViewModel.Gender;
+
+            return personModel;
+
+        }
+
     }
 }

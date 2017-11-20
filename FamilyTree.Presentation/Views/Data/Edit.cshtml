@@ -1,20 +1,11 @@
 ﻿@model FamilyTree.Presentation.Models.EditViewModel
 
+@{
+    var parentCount = Model.ParentCount;
+    var existingParentGender = ViewData["parentGender"];
+}
 
 <h2>Edit @Model.Name's Details</h2>
-
-@*<form method="post" action="~/Data/EditPerson">
-    <div class="form-group">
-    @Html.HiddenFor(model=>model.Id)
-    <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-        </div>
-  </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>*@
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -31,7 +22,17 @@
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
         </div>
+        <div id ="parents">
 
+            @*@Html.Partial("_AddParents", Model)*@
+            <input id="mother" type="button" value="Add Mother" onclick="addParent()" style="visibility:hidden;" />
+            <input id="father" type="button" value="Add Mother" onclick="addParent()" style="visibility:hidden;"/>
+            <div id="loadParentPartial">
+
+            </div>
+
+        </div>
+        
          <p>
             <input type="submit" value="Save" />
         </p>
@@ -39,3 +40,35 @@
 }
 
 
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        var parentCount = @parentCount;
+        var parentGender = @existingParentGender;
+
+        @*function addMother(){
+            $("#loadParentPartial").load("@Url.Action("AddMother", @Model)")
+        }
+        function addFather(){
+            $("#loadParentPartial").load("@Url.Action("AddMother", @Model)")
+        }*@
+        function addParent(){
+            $("#loadParentPartial").load("@Url.Action("AddMother", @Model)")
+         }
+        
+        if (parentCount<2){
+            $("#parents").hide();
+        }
+        else{
+
+            $("#parents").show();
+            if(parentGender=="Female"){
+                $("#mother").show();
+            }
+            else{
+                $("#father").show();
+            }
+        }
+    });
+</script>
+    }

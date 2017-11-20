@@ -18,10 +18,17 @@ namespace FamilyTree.BLL.Managers
             _personRepository = personRepository;
         }
 
-        public void Update(PersonModel person)
+        public void Update(PersonModel personModel)
         {
-            Person personEntity = PersonMapper.ConvertToPersonEntity(person);
+            
+            Person personEntity = PersonMapper.ConvertToPersonEntity(personModel);
             _personRepository.Update(personEntity);
+        }
+
+        public void Save(PersonModel personModel)
+        {
+          Person personEntity = PersonMapper.ConvertToPersonEntity(personModel);
+          _personRepository.Save(personEntity);
         }
     }
 }

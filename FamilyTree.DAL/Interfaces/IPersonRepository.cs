@@ -11,5 +11,6 @@ namespace FamilyTree.DAL.Interfaces
         List<Person> GetAllPeople();
         Person GetById(int id);
         void Update(Person modifiedPerson);
+        int Save(Person person);
     }
 }
