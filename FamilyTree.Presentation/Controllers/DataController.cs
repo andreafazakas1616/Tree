@@ -47,6 +47,7 @@ namespace FamilyTree.Presentation.Controllers
             int parentCount = _familyManager.FindParents(person, people).Count;
             PersonModel parent = _familyManager.FindParents(person, people)[0];
             ViewData["parentGender"] = parent.Gender;
+            ViewData["name"] = person.Name;
 
             EditViewModel editedPerson = PersonMapper.ConvertToEditViewModel(person);
             editedPerson.ParentCount = parentCount;
@@ -94,9 +95,9 @@ namespace FamilyTree.Presentation.Controllers
         //}
 
         [HttpGet]
-        public ActionResult AddParents(EditViewModel personViewModel)
+        public ActionResult AddParents(int id)
         {
-            PersonModel personModel = _dalModelRetriever.GetPersonById(personViewModel.Id);
+            PersonModel personModel = _dalModelRetriever.GetPersonById(id);
             if (personModel.Relatives[0].Gender == "Female")
             {
                 ParentViewModel parent = new ParentViewModel();

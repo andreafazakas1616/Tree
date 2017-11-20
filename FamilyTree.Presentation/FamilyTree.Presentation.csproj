@@ -218,6 +218,7 @@
     <Compile Include="Models\CreateViewModel.cs" />
     <Compile Include="Models\EditViewModel.cs" />
     <Compile Include="Models\Mappers\PersonMapper.cs" />
+    <Compile Include="Models\ParentViewModel.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
     <Compile Include="Models\ViewModelRepository\ViewModelManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -352,6 +353,7 @@
     <Content Include="Views\Data\EditOrCreate.cshtml" />
     <Content Include="Views\Data\Edit.cshtml" />
     <Content Include="Views\Data\Create.cshtml" />
+    <Content Include="Views\Data\_AddParents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,17 +1,9 @@
 ﻿@model FamilyTree.Presentation.Models.EditViewModel
 
-@{
-    var parentCount = Model.ParentCount;
-    var existingParentGender = ViewData["parentGender"];
-}
-
 <h2>Edit @Model.Name's Details</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Movie</legend>
 
         @Html.HiddenFor(model => model.Id)
 
@@ -22,53 +14,55 @@
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
         </div>
-        <div id ="parents">
-
+        <div id ="parents" style="display:none;">
+            <p>hi</p>
             @*@Html.Partial("_AddParents", Model)*@
-            <input id="mother" type="button" value="Add Mother" onclick="addParent()" style="visibility:hidden;" />
-            <input id="father" type="button" value="Add Mother" onclick="addParent()" style="visibility:hidden;"/>
+            
+            <input id="mother" type="button" value="Add Mother" onclick="addParent()" style="display:none;" />
+            <input id="father" type="button" value="Add Mother" onclick="addParent()" style="display:none;" />
             <div id="loadParentPartial">
-
             </div>
-
         </div>
-        
          <p>
             <input type="submit" value="Save" />
         </p>
-    </fieldset>
+    
 }
-
 
 @section Scripts{
 <script>
     $(document).ready(function () {
-        var parentCount = @parentCount;
-        var parentGender = @existingParentGender;
+       
 
         @*function addMother(){
             $("#loadParentPartial").load("@Url.Action("AddMother", @Model)")
         }
         function addFather(){
             $("#loadParentPartial").load("@Url.Action("AddMother", @Model)")
-        }*@
+        }*@ 
+
         function addParent(){
-            $("#loadParentPartial").load("@Url.Action("AddMother", @Model)")
+            $("#loadParentPartial").load("@Url.Action("AddParents", new {id = Model.Id })")
          }
         
-        if (parentCount<2){
-            $("#parents").hide();
+        var parentCount = @Html.Raw(Json.Encode(Model.ParentCount));
+        var parentGender = @Html.Raw(Json.Encode((string)ViewData["parentGender"]));
+        
+        if (parentCount < 2) {
+            $("#parents").css('display', 'block');
+            if (parentGender == "Female") {
+                $("#father").css("display", "block");
+            }
+            else {
+                $("#mother").css("display", "block");
+            }
         }
-        else{
 
-            $("#parents").show();
-            if(parentGender=="Female"){
-                $("#mother").show();
-            }
-            else{
-                $("#father").show();
-            }
-        }
+        function addParent(){
+            $("#loadParentPartial").load("@Url.Action("AddParents", new {id=Model.Id })")
+         }
+        
+        
     });
 </script>
     }
