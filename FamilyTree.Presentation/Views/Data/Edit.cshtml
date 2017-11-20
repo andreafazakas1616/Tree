@@ -1,4 +1,4 @@
-﻿@model FamilyTree.Presentation.Models.EditViewModel
+@model FamilyTree.Presentation.Models.EditViewModel
 
 <h2>Edit @Model.Name's Details</h2>
 
@@ -14,41 +14,36 @@
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
         </div>
-        <div id ="parents" style="display:none;">
-            <p>hi</p>
-            @*@Html.Partial("_AddParents", Model)*@
-            
-            <input id="mother" type="button" value="Add Mother" onclick="addParent()" style="display:none;" />
-            <input id="father" type="button" value="Add Mother" onclick="addParent()" style="display:none;" />
-            <div id="loadParentPartial">
-            </div>
-        </div>
+       
          <p>
             <input type="submit" value="Save" />
         </p>
     
 }
+<div id="parents" style="display:none;">
+    
+    <input type="button" id="mother" value="Add Mother" style="display:none;" />
+    <input type="button" id="father" value="Add Father" style="display:none;" />
+    <div id="loadParentPartial">
+    </div>
+</div>
 
 @section Scripts{
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
-       
 
-        @*function addMother(){
-            $("#loadParentPartial").load("@Url.Action("AddMother", @Model)")
-        }
-        function addFather(){
-            $("#loadParentPartial").load("@Url.Action("AddMother", @Model)")
-        }*@ 
-
-        function addParent(){
-            $("#loadParentPartial").load("@Url.Action("AddParents", new {id = Model.Id })")
-         }
-        
         var parentCount = @Html.Raw(Json.Encode(Model.ParentCount));
         var parentGender = @Html.Raw(Json.Encode((string)ViewData["parentGender"]));
-        
-        if (parentCount < 2) {
+
+        $("#mother").click(function (){
+            $("#loadParentPartial").load("@Url.Action("AddMother", new {id = Model.Id })");
+        })
+
+        $("#father").click(function (){
+            $("#loadParentPartial").load("@Url.Action("AddFather", new {id = Model.Id })");
+        })
+
+        if (parentCount == 1) {
             $("#parents").css('display', 'block');
             if (parentGender == "Female") {
                 $("#father").css("display", "block");
@@ -58,11 +53,23 @@
             }
         }
 
-        function addParent(){
-            $("#loadParentPartial").load("@Url.Action("AddParents", new {id=Model.Id })")
-         }
-        
-        
+        if (parentCount == 0) {
+            $("#parents").css('display', 'block');
+            $("#mother").css("display", "block");
+            $("#father").css("display", "block");
+        }
     });
+
+    @*function addParent() {
+
+        if (parentGender == "Female") {
+            $("#loadParentPartial").load("@Url.Action("AddMother", new {id = Model.Id })")
+        }
+        else {
+            $("#loadParentPartial").load("@Url.Action("AddFather", new {id = Model.Id })")
+        }
+       
+    }*@
 </script>
     }
+
