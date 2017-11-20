@@ -41,12 +41,29 @@ namespace FamilyTree.DAL.Repositories
             _context.SaveChanges();
         }
 
+        public void AddMother(Person modifiedPerson)
+        {
+            Person oldPerson = GetById(modifiedPerson.Id);
+            oldPerson.MomId = modifiedPerson.MomId;
+            _context.Entry(oldPerson).State = System.Data.Entity.EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public void AddFather(Person modifiedPerson)
+        {
+            Person oldPerson = GetById(modifiedPerson.Id);
+            oldPerson.DadId = modifiedPerson.DadId;
+            _context.Entry(oldPerson).State = System.Data.Entity.EntityState.Modified;
+            _context.SaveChanges();
+        }
+
         public int Save(Person person)
         {
             _context.People.Add(person);
             _context.SaveChanges();
             return person.Id;
         }
+
 
     }
 }
