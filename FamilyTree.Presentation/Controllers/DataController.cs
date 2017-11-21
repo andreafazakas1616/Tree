@@ -26,18 +26,6 @@ namespace FamilyTree.Presentation.Controllers
             _familyManager = familyManager;
         }
 
-        //public ActionResult EditOrCreate(PersonModel person)
-        //{
-        //    if (person.Name!="Unknown")
-        //    {
-        //        return RedirectToAction("Edit", person);
-        //    }
-        //    else
-        //    {
-        //        return View("Create");
-        //    }
-        //}
-
         [HttpGet]
         public ActionResult Edit(int id = 0)
         {
@@ -89,6 +77,8 @@ namespace FamilyTree.Presentation.Controllers
         [HttpPost]
         public ActionResult AddFather(ParentViewModel parent)
         {
+            
+           
             if (ModelState.IsValid)
             {
                 PersonModel child = _dalModelRetriever.GetPersonById(parent.ChildId);
@@ -97,6 +87,7 @@ namespace FamilyTree.Presentation.Controllers
                 parent.Id = _dalModelModifier.Save(parentModel);
                 child.DadId = parent.Id;
                 _dalModelModifier.AddFather(child);
+                
                 return Redirect("~/Home/Index");
             }
             else

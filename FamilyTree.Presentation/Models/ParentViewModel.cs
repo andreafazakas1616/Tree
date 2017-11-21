@@ -16,8 +16,9 @@ namespace FamilyTree.Presentation.Models
 
         public string Gender { get; set; }
 
+       [CustomAgeValidation]
         public int Age { get; set; }
-
+       
         public string ChildName { get; set; }
 
         public int ChildId { get; set; }

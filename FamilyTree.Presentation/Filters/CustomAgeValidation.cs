@@ -7,25 +7,29 @@ using System.Web;
 
 namespace FamilyTree.Presentation.Filters
 {
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public class CustomAgeValidation : ValidationAttribute
     {
-        ParentViewModel parent = new ParentViewModel();
         
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            int parentAge = parent.Age;
-            int childAge = parent.ChildAge;
-            if (parentAge == 0) 
+            Object instance = validationContext.ObjectInstance;
+            Type type = instance.GetType();
+
+            Object childAge = type.GetProperty("ChildAge").GetValue(instance, null);
+
+            if(value==null)
             {
-                return new ValidationResult("Please provide this person's age.");
+                return new ValidationResult("Please Enter a Valid Email.");
             }
             else
             {
-                if (parentAge < childAge+18)
+                if((int)value<((int)(childAge)+18))
                 {
-                    return new ValidationResult("The parent can't be younger than the child");
+                    return new ValidationResult("The parent must be at least 18 years older than the child");
                 }
             }
+
             return ValidationResult.Success;
         }
     }
