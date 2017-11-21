@@ -7,10 +7,10 @@
 
 <div class="tree treesize">
     <ul class="expand">
-        <li class="node modify">
+        <li class="node">
             @if (Model.Id == (int)ViewData["SelectedNode"])
-            { 
-       
+            {
+
                 <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @Model.Gender) :</span><br><span>@Model.ParentType</span></p>
                 <br />
                 @Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })
@@ -20,8 +20,8 @@
                 <p>@Model.Name :<br><span>@Model.ParentType</span></p>
                 if (Model.Name != "Unknown")
                 {
-                @Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })
-    
+                    @Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })
+
                 }
             }
             <ul>
@@ -31,53 +31,74 @@
 
                         @Html.Partial("_FamilyTree", parent)
 
-                    </li>  
+                    </li>
                 }
             </ul>
         </li>
     </ul>
 </div>
 
-@* 
-    @if (Model.Id == (int)ViewData["SelectedNode"])
-    { 
-        
-            <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @if (Model.Gender == false)
-                                                                                {
-                                                                                     <span>Female</span>
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                     <span>Male</span>
-                                                                                })
-                                                </span>
-            </p>
-        
-    }
-    else
-    {
-        @Model.Name
-    }
-    
-
-
-<ul>
-@foreach (var parent in Model.Relatives)
-{
-   <li>
-    @Html.Partial("_FamilyTree", parent)
-  </li>
-        
-}
-
-</ul>
-
-@Scripts.Render("~/bundles/jquery")
 <script>
-    $(function () {
+    
+        var modelId = @Html.Raw(Json.Encode(Model.Id));
+    var lastDescendantId = @Html.Raw(Json.Encode((int)ViewData["LastDescendantId"]));
+
+    function addClass(el, className) {
+        if (el.classList)
+            el.classList.add(className)
+        else if (!hasClass(el, className)) el.className += " " + className
+    }
 
 
-    });
-</script>*@
+        if (lastDescendantId == modelId) {
+            var listElement = document.getElementsByClassName("node")[0];
+            addClass(listElement, "modify");
+        }
+       
+    
+</script>
+
+
+@*
+        @if (Model.Id == (int)ViewData["SelectedNode"])
+        {
+
+                <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @if (Model.Gender == false)
+                                                                                    {
+                                                                                         <span>Female</span>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                         <span>Male</span>
+                                                                                    })
+                                                    </span>
+                </p>
+
+        }
+        else
+        {
+            @Model.Name
+        }
+
+
+
+    <ul>
+    @foreach (var parent in Model.Relatives)
+    {
+       <li>
+        @Html.Partial("_FamilyTree", parent)
+      </li>
+
+    }
+
+    </ul>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(function () {
+
+
+        });
+    </script>*@
 
 

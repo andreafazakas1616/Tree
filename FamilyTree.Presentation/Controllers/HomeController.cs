@@ -53,6 +53,7 @@ namespace FamilyTree.Presentation.Controllers
             selectedNode.Relatives = _familyManager.FindChildren(selectedNode, peopleList);
             PersonModel lastDescendant = _familyManager.GetFullFamilyTreeFromRoot(selectedNode, peopleList);
             ViewData["SelectedNode"] = selectedNode.Id;
+            ViewData["LastDescendantId"] = lastDescendant.Id;
             return PartialView("_FamilyTree", lastDescendant);
         }
 
