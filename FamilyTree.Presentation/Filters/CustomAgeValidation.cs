@@ -20,7 +20,7 @@ namespace FamilyTree.Presentation.Filters
 
             if(value==null)
             {
-                return new ValidationResult("Please Enter a Valid Email.");
+                return new ValidationResult("The Age field is required.");
             }
             else
             {
