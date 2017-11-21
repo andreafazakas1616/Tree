@@ -41,7 +41,7 @@ namespace FamilyTree.Presentation.Controllers
         [HttpGet]
         public ActionResult Edit(int id = 0)
         {
-            //PersonModel person = _dalModelRetriever.GetPersonById(Id);
+
             PersonModel person = _dalModelRetriever.GetPersonById(id);
             List<PersonModel> people = _dalModelRetriever.GetAllPeople();
             int parentCount = _familyManager.FindParents(person, people).Count;
@@ -73,41 +73,15 @@ namespace FamilyTree.Presentation.Controllers
                 return View(editedPerson);
             }
         }
-        
-        //[HttpGet]
-        //public ActionResult Create(int id)
-        //{
-        //    PersonModel personModel = _dalModelRetriever.GetPersonById(id);
-        //    CreateViewModel parent = new CreateViewModel();
-        //    return View(parent);
-        //}
 
-        //[HttpPost]
-        //public ActionResult Create(CreateViewModel person)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        PersonModel personModel = PersonMapper.ConvertToPersonModel(person);
-        //        _dalModelModifier.Save(personModel);
-        //        return RedirectToAction("~/Home/Index");
-        //    }
-        //    else
-        //    {
-        //        return View(person);
-        //    }
-
-        //}
-
-      
-        
-
-       [HttpGet]
+        [HttpGet]
         public ActionResult AddFather(int id)
         {
             ParentViewModel parent = new ParentViewModel();
             PersonModel child = _dalModelRetriever.GetPersonById(id);
             parent.ChildId = id;
             parent.ChildName = child.Name;
+            parent.ChildAge = child.Age;
             ViewData["parent"] = "father";
             return PartialView("_AddParents", parent);
         }
@@ -115,20 +89,29 @@ namespace FamilyTree.Presentation.Controllers
         [HttpPost]
         public ActionResult AddFather(ParentViewModel parent)
         {
-            PersonModel child = _dalModelRetriever.GetPersonById(parent.ChildId);
-            parent.Gender = "Male";
-            PersonModel parentModel = PersonMapper.ConvertToPersonModel(parent);
-            parent.Id = _dalModelModifier.Save(parentModel);
-            child.DadId = parent.Id;
-            _dalModelModifier.AddFather(child);
-            return Redirect("~/Home/Index");
+            if (ModelState.IsValid)
+            {
+                PersonModel child = _dalModelRetriever.GetPersonById(parent.ChildId);
+                parent.Gender = "Male";
+                PersonModel parentModel = PersonMapper.ConvertToPersonModel(parent);
+                parent.Id = _dalModelModifier.Save(parentModel);
+                child.DadId = parent.Id;
+                _dalModelModifier.AddFather(child);
+                return Redirect("~/Home/Index");
+            }
+            else
+            {
+                return PartialView("_AddParents", parent);
+            }
         }
 
         [HttpGet]
         public ActionResult AddMother(int id)
         {
             ParentViewModel parent = new ParentViewModel();
+            PersonModel child = _dalModelRetriever.GetPersonById(id);
             parent.ChildId = id;
+            parent.ChildAge = child.Age;
             ViewData["parent"] = "mother";
             return PartialView("_AddParents", parent);
         }
@@ -136,13 +119,21 @@ namespace FamilyTree.Presentation.Controllers
         [HttpPost]
         public ActionResult AddMother(ParentViewModel parent)
         {
-            PersonModel child = _dalModelRetriever.GetPersonById(parent.ChildId);
-            parent.Gender = "Female";
-            PersonModel parentModel = PersonMapper.ConvertToPersonModel(parent);
-            parent.Id = _dalModelModifier.Save(parentModel);
-            child.MomId = parent.Id;
-            _dalModelModifier.AddMother(child);
-            return Redirect("~/Home/Index");
+            if (ModelState.IsValid)
+            {
+                PersonModel child = _dalModelRetriever.GetPersonById(parent.ChildId);
+                parent.Gender = "Female";
+                PersonModel parentModel = PersonMapper.ConvertToPersonModel(parent);
+                parent.Id = _dalModelModifier.Save(parentModel);
+                child.MomId = parent.Id;
+                _dalModelModifier.AddMother(child);
+                return Redirect("~/Home/Index");
+            }
+            else
+            {
+                return PartialView("_AddParents", parent);
+            }
         }
     }
 }
+

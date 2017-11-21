@@ -40,7 +40,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            var parentCount = @Html.Raw(Json.Encode(Model.ParentCount));
+        var parentCount = @Html.Raw(Json.Encode(Model.ParentCount));
         var parentGender = @Html.Raw(Json.Encode((string)ViewData["parentGender"]));
 
         $("#mother").click(function (){
