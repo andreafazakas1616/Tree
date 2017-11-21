@@ -2,49 +2,43 @@
 
 @{
     int? id = @Model.Id;
+    var parentType = (string)ViewData["ParentType"];
 }
 
 <div class="tree treesize">
-<ul>
-  <li class="node">
- @if (Model.Id == (int)ViewData["SelectedNode"])
-    { 
+    <ul class="expand">
+        <li class="node modify">
+            @if (Model.Id == (int)ViewData["SelectedNode"])
+            { 
        
-      <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @Model.Gender)</span></p><br/>
-      @*<input type="button" value="Edit" onclick="location.href='@Url.Action("EditOrCreate", "Data", @Model)'" />*@
-     @Html.ActionLink("Edit", "Edit", new{controller = "Data", id = Model.Id })
-    }
- else
- {
-        <p>@Model.Name </p>
-     if (Model.Name != "Unknown")
-     {
-         @Html.ActionLink("Edit", "Edit", new {controller="Data", id = Model.Id })
-     }
-    else
-    {
-     @Html.ActionLink("Create", "Create", new{Controller="Data" })
-     }
- 
-     
-    }
-<ul>   
-@foreach (var parent in Model.Relatives)
-{
-   <li>
+                <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @Model.Gender) :</span><br><span>@Model.ParentType</span></p>
+                <br />
+                @Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })
+            }
+            else
+            {
+                <p>@Model.Name :<br><span>@Model.ParentType</span></p>
+                if (Model.Name != "Unknown")
+                {
+                @Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })
     
-    @Html.Partial("_FamilyTree", parent)
-  
-   </li>  
-}
+                }
+            }
+            <ul>
+                @foreach (var parent in Model.Relatives)
+                {
+                    <li>
+
+                        @Html.Partial("_FamilyTree", parent)
+
+                    </li>  
+                }
+            </ul>
+        </li>
     </ul>
- </li> 
- </ul>
-    
-    
 </div>
 
-   @* 
+@* 
     @if (Model.Id == (int)ViewData["SelectedNode"])
     { 
         

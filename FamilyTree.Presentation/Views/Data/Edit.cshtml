@@ -2,54 +2,66 @@
 
 <h2>Edit @Model.Name's Details</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
 
-        @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Id)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
        
-         <p>
-            <input type="submit" value="Save" />
-        </p>
+    <p>
+        <input type="submit" value="Save" />
+    </p>
     
 }
-<div id="parents" style="display:none;">
-    
-    <input type="button" id="mother" value="Add Mother" style="display:none;" />
-    <input type="button" id="father" value="Add Father" style="display:none;" />
-    <div id="loadParentPartial">
+<div id="parents" style="display: none;">
+
+    <input type="button" class="myBtn1" id="mother" value="Add Mother" style="display: none;" />
+    <input type="button" class="myBtn2" id="father" value="Add Father" style="display: none;" />
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="loadParentPartial">
+                
+            </div>
+            
+        </div>
     </div>
 </div>
 
 @section Scripts{
-<script type="text/javascript">
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-        var parentCount = @Html.Raw(Json.Encode(Model.ParentCount));
+            var parentCount = @Html.Raw(Json.Encode(Model.ParentCount));
         var parentGender = @Html.Raw(Json.Encode((string)ViewData["parentGender"]));
 
         $("#mother").click(function (){
-            $("#loadParentPartial").load("@Url.Action("AddMother", new {id = Model.Id })");
+            $("#loadParentPartial").load("@Url.Action("AddMother", new { id = Model.Id })");
         })
 
         $("#father").click(function (){
-            $("#loadParentPartial").load("@Url.Action("AddFather", new {id = Model.Id })");
+            $("#loadParentPartial").load("@Url.Action("AddFather", new { id = Model.Id })");
         })
 
         if (parentCount == 1) {
             $("#parents").css('display', 'block');
             if (parentGender == "Female") {
+               
                 $("#father").css("display", "block");
+                $("<p>Mother already exists.</p>").insertBefore("#father");
             }
             else {
+               
                 $("#mother").css("display", "block");
+                $("<p>Father already exists.</p>").insertBefore("#mother");
             }
         }
 
@@ -58,9 +70,42 @@
             $("#mother").css("display", "block");
             $("#father").css("display", "block");
         }
-    });
+        });
 
-    @*function addParent() {
+        
+        // Get the modal
+        
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn1 = document.getElementsByClassName("myBtn1")[0];
+        var btn2 = document.getElementsByClassName("myBtn2")[0];
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn1.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        btn2.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        @*function addParent() {
 
         if (parentGender == "Female") {
             $("#loadParentPartial").load("@Url.Action("AddMother", new {id = Model.Id })")
@@ -71,5 +116,7 @@
        
     }*@
 </script>
+   
+
     }
 
