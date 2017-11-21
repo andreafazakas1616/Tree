@@ -19,6 +19,14 @@ namespace FamilyTree.BLL.Managers
             foreach (PersonModel parent in parents)
             {
                 FindParents(parent, personList);
+                if (parent.Gender == "Female")
+                {
+                    parent.ParentType = "Mother";
+                }
+                else
+                {
+                    parent.ParentType = "Father";
+                }
                 root.Relatives.Add(parent);
 
                 foreach (var relative in root.Relatives)

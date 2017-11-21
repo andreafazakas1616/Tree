@@ -21,5 +21,6 @@ namespace FamilyTree.BLL.Models
         public string Gender { get; set; }
         public int Age { get; set; }
         public List<PersonModel> Relatives { get; set; }
+        public string ParentType { get; set; }
     }
 }
