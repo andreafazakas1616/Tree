@@ -1,9 +1,16 @@
 ﻿@model FamilyTree.Presentation.Models.PersonViewModel
 
 <div class="container">
-    <h2 class="selectedNodeName col-md-4 offset-md-3">@Model.Name's Family Tree</h2>
+    <h2 class="selectedNodeName col-md-4 offset-5">@Model.Name's Family Tree</h2>
     @Html.Action("FamilyTreePartialView")
 </div>
 
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("body").css("background-color", "#fff3e6");
+        });
+    </script>
+}
 
 
