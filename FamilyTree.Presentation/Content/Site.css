@@ -12,6 +12,36 @@
 
 /*popup*/
 
+.edit {
+    border-radius: 10px;
+    background-color: white;
+    width: 400px;
+    height: 400px;
+    padding: 30px 20px 30px 30px;
+    border: 2px solid #1a0033 !important;
+}
+
+.peopleList{
+    margin-top:30px;
+}
+
+#loadParentPartial{
+    margin-left:13%;
+}
+.saveButton {
+    border-radius: 10px;
+    border: 2px solid #1a0033 !important;
+    background-color:white !important;
+    margin-left:15px;
+}
+
+.parentButton {
+    border-radius: 10px;
+    border: 2px solid #1a0033 !important;
+    background-color: white !important;
+    margin-left:15px;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -33,7 +63,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
 }
 
 /* The Close Button */
@@ -195,10 +225,9 @@
   margin:0;
 }
 
-html {
-    background-color: #e2e2e2;
-    margin: 0;
-    padding: 0;
+p.listParagraph.lastDescendantParagraph.offset-md-3  {
+    
+    width:100px;
 }
 
 body {
@@ -318,7 +347,7 @@ header .content-wrapper {
 
 footer {
     clear: both;
-    background-color: #e2e2e2;
+    /*background-color: #e2e2e2;*/
     font-size: .8em;
     height: 100px;
 }
