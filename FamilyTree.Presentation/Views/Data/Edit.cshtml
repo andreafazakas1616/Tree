@@ -1,41 +1,45 @@
 @model FamilyTree.Presentation.Models.EditViewModel
 
-<h2>Edit @Model.Name's Details</h2>
+<div class="edit offset-4">
+    <h2 style="color:#1a0033">Edit @Model.Name's Details</h2>
+    <br>
+    <br>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
 
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
 
-    @Html.HiddenFor(model => model.Id)
-
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Name)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.Name)
-        @Html.ValidationMessageFor(model => model.Name)
-    </div>
-       
-    <p>
-        <input type="submit" value="Save" />
-    </p>
-    
-}
-<div id="parents" style="display: none;">
-
-    <input type="button" class="myBtn1" id="mother" value="Add Mother" style="display: none;" />
-    <input type="button" class="myBtn2" id="father" value="Add Father" style="display: none;" />
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="loadParentPartial">
-                
+        
+            <div class="editor-label col-md-2" style="color:#1a0033">
+                @Html.LabelFor(model => model.Name)
             </div>
-            
+            <div class="editor-field col-md-5">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+       
+            <p>
+                <input class="saveButton col-md-3" type="submit" value="Save" />
+            </p>
+
+    }
+    <hr>
+    <div id="parents" style="display: none;">
+
+        <input type="button" class="myBtn1 parentButton" id="mother" value="Add Mother" style="display: none;" />
+        <input type="button" class="myBtn2 parentButton" id="father" value="Add Father" style="display: none;" />
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="loadParentPartial">
+
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
-
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
@@ -54,12 +58,12 @@
         if (parentCount == 1) {
             $("#parents").css('display', 'block');
             if (parentGender == "Female") {
-               
+
                 $("#father").css("display", "block");
                 $("<p>Mother already exists.</p>").insertBefore("#father");
             }
             else {
-               
+
                 $("#mother").css("display", "block");
                 $("<p>Father already exists.</p>").insertBefore("#mother");
             }
@@ -70,11 +74,13 @@
             $("#mother").css("display", "block");
             $("#father").css("display", "block");
         }
+
+        $("body").css("background-color", "#fff3e6");
         });
 
-        
+
         // Get the modal
-        
+
         var modal = document.getElementById('myModal');
 
         // Get the button that opens the modal
@@ -84,7 +90,7 @@
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
+        // When the user clicks the button, open the modal
         btn1.onclick = function () {
             modal.style.display = "block";
         }
@@ -113,10 +119,10 @@
         else {
             $("#loadParentPartial").load("@Url.Action("AddFather", new {id = Model.Id })")
         }
-       
-    }*@
-</script>
-   
 
-    }
+    }*@
+    </script>
+
+
+}
 
