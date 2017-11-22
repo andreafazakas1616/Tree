@@ -11,18 +11,21 @@
             @if (Model.Id == (int)ViewData["SelectedNode"])
             {
 
-                <p class="selectedNode">@Model.Name <span>(Age: @Model.Age, Gender: @Model.Gender) :</span><br><span>@Model.ParentType</span></p>
+                <p class="selectedNode listParagraph">@Model.Name <span>(Age: @Model.Age, Gender: @Model.Gender) :</span><br><span>@Model.ParentType</span><br><span>@Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })</span></p>
                 <br />
-                @Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })
+                
             }
             else
             {
-                <p>@Model.Name :<br><span>@Model.ParentType</span></p>
-                if (Model.Name != "Unknown")
-                {
-                    @Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })
+                <p class="listParagraph">@Model.Name :<br><span>@Model.ParentType</span><br><span>
+                                                                          @if (Model.Name != "Unknown")
+                                                                          {
+                                                                          @Html.ActionLink("Edit", "Edit", new { controller = "Data", id = Model.Id })
 
-                }
+                                                                          }
+                     
+                     </span></p>
+               
             }
             <ul>
                 @foreach (var parent in Model.Relatives)
@@ -40,7 +43,7 @@
 
 <script>
     
-        var modelId = @Html.Raw(Json.Encode(Model.Id));
+    var modelId = @Html.Raw(Json.Encode(Model.Id));
     var lastDescendantId = @Html.Raw(Json.Encode((int)ViewData["LastDescendantId"]));
 
     function addClass(el, className) {
@@ -49,16 +52,17 @@
         else if (!hasClass(el, className)) el.className += " " + className
     }
 
-
         if (lastDescendantId == modelId) {
             var listElement = document.getElementsByClassName("node")[0];
+            var paragraph = document.getElementsByClassName("listParagraph")[0];
+
             addClass(listElement, "modify");
+            addClass(paragraph, "lastDescendantParagraph");
+            addClass(paragraph, "offset-md-3");
         }
        
     
 </script>
-
-
 @*
         @if (Model.Id == (int)ViewData["SelectedNode"])
         {
